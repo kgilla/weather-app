@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { countries } from "./countries.js";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -32,23 +33,19 @@ class SearchBar extends React.Component {
   }
 }
 
-class TempChunk extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>{this.props.weather.city_name}</h2>
-        <h2>{this.props.weather.country_code}</h2>
-        <h2>{this.props.weather.temp}</h2>
-        <h2>{this.props.innerWeather.description}</h2>
-        <img
-          src={
-            process.env.PUBLIC_URL +
-            `/icons/${this.props.innerWeather.icon}.png`
-          }
-        />
-      </div>
-    );
-  }
+function TempChunk(props) {
+  return (
+    <div>
+      <h2>{props.weather.city_name}</h2>
+      <h2>{props.country}</h2>
+      <h2>{props.weather.temp}</h2>
+      <h2>{props.innerWeather.description}</h2>
+      <img
+        src={process.env.PUBLIC_URL + `/icons/${props.innerWeather.icon}.png`}
+        alt="Icon Displaying Weather"
+      />
+    </div>
+  );
 }
 
 // class WindChunk extends React.Component {
@@ -73,9 +70,18 @@ class WeatherApp extends React.Component {
     this.state = {
       weather: "",
       innerWeather: "",
+      country: "",
     };
     this.handleInput = this.handleInput.bind(this);
     this.getWeather = this.getWeather.bind(this);
+    this.findCountry = this.findCountry.bind(this);
+  }
+
+  findCountry(weather) {
+    const c = countries.find(
+      (c) => c.country_code === weather.data[0].country_code
+    );
+    return c.country_name;
   }
 
   async getWeather(city) {
@@ -84,10 +90,13 @@ class WeatherApp extends React.Component {
       { mode: "cors" }
     );
     const weather = await response.json();
+
     this.setState(() => ({
       weather: weather.data[0],
       innerWeather: weather.data[0].weather,
+      country: this.findCountry(weather),
     }));
+
     console.log(this.state.weather);
   }
 
@@ -100,11 +109,12 @@ class WeatherApp extends React.Component {
       <div>
         <h1>Super Weather App!</h1>
         <SearchBar sendInput={this.handleInput} />
-        {this.state.weather !== null ? (
+        {this.state.weather !== "" ? (
           <div>
             <TempChunk
               weather={this.state.weather}
               innerWeather={this.state.innerWeather}
+              country={this.state.country}
             />
           </div>
         ) : null}
