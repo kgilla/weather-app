@@ -74,7 +74,7 @@ export const countries = [
   { country_code: "FO", country_name: "Faroe Islands" },
   { country_code: "FR", country_name: "France" },
   { country_code: "GA", country_name: "Gabon" },
-  { country_code: "GB", country_name: "Great Britain" },
+  { country_code: "GB", country_name: "England" },
   { country_code: "GD", country_name: "Grenada" },
   { country_code: "GE", country_name: "Abkhazia" },
   { country_code: "GF", country_name: null },

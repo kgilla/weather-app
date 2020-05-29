@@ -3,14 +3,46 @@ import ReactDOM from "react-dom";
 import "./reset.css";
 import "./index.css";
 import { countries } from "./countries.js";
+import cities from "cities.json";
 
-function Header() {
+const Header = () => {
   return (
     <header id="top-banner">
       <h1>4-Cast</h1>
     </header>
   );
-}
+};
+
+const Results = (props) => {
+  const getResultsList = () => {
+    const reg = new RegExp("^" + props.input, "gi");
+    let list = cities.filter((city) => city.name.match(reg));
+    return list.slice(0, 5);
+  };
+
+  const findCountry = (code) => {
+    const c = countries.find((c) => c.country_code === code);
+    return c.country_name;
+  };
+
+  const handleClick = (e) => {
+    props.func(e.target.textContent);
+  };
+
+  const resultList = getResultsList();
+
+  return (
+    <div id="results">
+      <ol>
+        {resultList.map((result, i) => (
+          <li key={i} className="result" onClick={handleClick}>
+            {result.name + ", " + findCountry(result.country)}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+};
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -20,6 +52,12 @@ class SearchBar extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleError() {
+    console.log("error");
   }
 
   handleInput(e) {
@@ -28,26 +66,40 @@ class SearchBar extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.props.sendInput(this.state.input);
+    if (this.state.input !== "") {
+      this.props.sendInput(this.state.input);
+    } else {
+      this.logError();
+    }
+  }
+
+  handleInputChange(input) {
+    this.setState(() => ({
+      input: input,
+    }));
   }
 
   render() {
     return (
-      <form id="search-bar">
+      <form id="search-bar" autoComplete="off">
         <label htmlFor="searchInput">Whats The Weather Like In...</label>
         <input
           type="text"
           id="searchInput"
           placeholder="Enter a city"
           onChange={this.handleInput}
+          value={this.state.input}
         ></input>
-        <button onClick={this.handleClick}>Enter</button>
+        <button onClick={this.handleClick}>Search</button>
+        {this.state.input.length >= 1 ? (
+          <Results input={this.state.input} func={this.handleInputChange} />
+        ) : null}
       </form>
     );
   }
 }
 
-function TempChunk(props) {
+const TempChunk = (props) => {
   return (
     <div id="temp-chunk">
       <h2>{props.innerWeather.description}</h2>
@@ -61,9 +113,9 @@ function TempChunk(props) {
       <h2>Feels Like: {Math.round(props.weather.app_temp)}&deg;C</h2>
     </div>
   );
-}
+};
 
-function DetailsChunk(props) {
+const DetailsChunk = (props) => {
   return (
     <div id="details-chunk">
       <h2>Precipitation: {props.weather.precip} mm/hr</h2>
@@ -73,9 +125,9 @@ function DetailsChunk(props) {
       <h2>Wind Direction: {props.weather.wind_cdir_full}</h2>
     </div>
   );
-}
+};
 
-function Weather(props) {
+const Weather = (props) => {
   return (
     <div id="weather-card">
       <header id="weather-header">
@@ -94,7 +146,7 @@ function Weather(props) {
       </div>
     </div>
   );
-}
+};
 
 class App extends React.Component {
   constructor(props) {
