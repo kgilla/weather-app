@@ -68,6 +68,7 @@ class SearchBar extends React.Component {
     e.preventDefault();
     if (this.state.input !== "") {
       this.props.sendInput(this.state.input);
+      this.setState({ input: "" });
     } else {
       this.logError();
     }

@@ -26,8 +26,8 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  background: #2874a6;
-  border-bottom: 0.1rem solid #1b4f72;
+  background: #0277bd;
+  border-bottom: 0.1rem solid #666;
   padding: 0.5rem;
   color: #fff;
 }
@@ -44,7 +44,7 @@ html {
   width: 50%;
   margin: 4rem;
   padding: 2%;
-  border: 0.1rem solid #666;
+  border: 0.1rem solid #aaa;
   border-radius: 0.5rem;
   background: #fff;
 }
@@ -70,7 +70,7 @@ html {
   border: 0.1rem solid #aaa;
   border-left: none;
   border-radius: 0 0.25rem 0.25rem 0;
-  background: #ff9800;
+  background: #ffa726;
 }
 
 #search-bar button:hover {
@@ -84,17 +84,16 @@ html {
   border-top: none;
   border-radius: 0 0 0.25rem 0.25rem;
   overflow: hidden;
-  border-collapse: collapse;
 }
 
 .result {
   background: #fff;
   padding: 0.75rem;
-  /* border-bottom: 0.1rem solid #666; */
 }
 
 .result:hover {
   filter: brightness(90%);
+  cursor: pointer;
 }
 
 /* Weather Details */
@@ -105,7 +104,7 @@ html {
   grid-template-rows: repeat(5, 1fr);
   width: 50%;
   height: 50%;
-  border: 0.1rem solid #666;
+  border: 0.1rem solid #aaa;
   border-radius: 0.5rem;
   background: #fff;
   overflow: hidden;
@@ -118,7 +117,7 @@ html {
   align-items: center;
   padding: 1rem;
   border-bottom: 0.1rem solid #aaa;
-  background: #2874a6;
+  background: #0277bd;
   color: #fff;
   font-size: 1.2rem;
 }
