@@ -1,0 +1,29 @@
+@import "./reset";
+@import "./navbar";
+@import "./results";
+@import "./searchbar";
+@import "./weather";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap");
+
+html {
+  font-size: 16px;
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("../images/backgrounds/weather.png");
+  font-family: "Open Sans", sans-serif;
+  height: 100%;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}

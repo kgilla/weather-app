@@ -1,0 +1,40 @@
+/* Search Bar */
+
+#search-bar {
+  position: relative;
+  margin: 1rem;
+  padding: 2rem;
+  border: 0.1rem solid #000;
+  border-radius: 0.5rem;
+  background-color: #0277bd;
+}
+
+#search-bar label {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-style: italic;
+}
+
+#search-bar input {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  border: 0.1rem solid #aaa;
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+#search-bar button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: 0.1rem solid #aaa;
+  border-left: none;
+  border-radius: 0 0.25rem 0.25rem 0;
+  background: #ffa726;
+}
+
+#search-bar button:hover {
+  filter: brightness(90%);
+}

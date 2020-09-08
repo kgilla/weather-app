@@ -1,0 +1,18 @@
+#results {
+  position: absolute;
+  width: 73.5%;
+  border: 0.1rem solid #aaa;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+  overflow: hidden;
+}
+
+.result {
+  background: #fff;
+  padding: 0.75rem;
+}
+
+.result:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
