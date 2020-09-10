@@ -4,10 +4,6 @@
   width: 100%;
   max-width: 40rem;
   margin-bottom: 3rem;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    transparent;
 }
 
 #search-heading {
@@ -58,7 +54,8 @@
 }
 
 #search-button:hover {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #27ae60;
+  color: #fff;
+  background: #229954;
   cursor: pointer;
 }
 
@@ -67,6 +64,10 @@
   background-color: transparent;
   border: none;
   background-color: #fff;
+}
+
+#cancel-button:hover {
+  color: #888;
 }
 
 #cancel-button:hover {

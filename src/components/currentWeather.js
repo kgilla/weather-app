@@ -4,18 +4,49 @@ const CurrentWeather = (props) => {
   const image = props.weather.weather[0].icon;
 
   return (
-    <div id="weather-weather">
-      <h1>{props.weather.weather[0].description}</h1>
-      <h1>{props.weather.temp}</h1>
-      <h1>Feels Like {props.weather.feels_like}</h1>
-      <h1>{props.weather.clouds}% Cloud Coverage</h1>
-      <h1>{props.weather.humidity}% humidity</h1>
-      <h1>Wind Direction {props.weather.wind_deg} degrees</h1>
-      <h1>Wind: {props.weather.wind_speed} meters per second</h1>
-      <img
-        src={`http://openweathermap.org/img/wn/${image}@2x.png`}
-        alt={props.weather.weather[0].description}
-      />
+    <div id="current-weather">
+      <div id="current-weather-main">
+        <div id="current-weather-main-left">
+          <img
+            src={`http://openweathermap.org/img/wn/${image}@4x.png`}
+            alt={props.weather.weather[0].description}
+          />
+        </div>
+        <div id="current-weather-main-right">
+          <h1 id="current-weather-temp">{props.weather.temp}°C</h1>
+          <h1>Feels Like: {props.weather.feels_like}°C</h1>
+        </div>
+      </div>
+      <div id="current-weather-details">
+        <div className="detail-box">
+          <h5 className="detail">
+            {props.moment.unix(props.weather.sunrise).format("h:mm a")}
+          </h5>
+          <h6 className="detail-label">Sunrise</h6>
+        </div>
+        <div className="detail-box">
+          <h5 className="detail">
+            {props.moment.unix(props.weather.sunset).format("h:mm a")}
+          </h5>
+          <h6 className="detail-label">Sunset</h6>
+        </div>
+        <div className="detail-box">
+          <h5 className="detail">{props.weather.clouds}%</h5>
+          <h6 className="detail-label">Cloud Coverage</h6>
+        </div>
+        <div className="detail-box">
+          <h5 className="detail">{props.weather.humidity}%</h5>
+          <h6 className="detail-label">Humidity</h6>
+        </div>
+        <div className="detail-box">
+          <h5 className="detail">{props.weather.wind_deg} degrees</h5>
+          <h6 className="detail-label">Wind Direction</h6>
+        </div>
+        <div className="detail-box">
+          <h5 className="detail">{props.weather.wind_speed}</h5>
+          <h6 className="detail-label">Wind Speed</h6>
+        </div>
+      </div>
     </div>
   );
 };

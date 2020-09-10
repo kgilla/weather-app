@@ -12,7 +12,7 @@ const Results = (props) => {
 
   const handleMouseDown = (e) => {
     props.getData(results[e.target.attributes[0].value]);
-    props.func(e.target.textContent);
+    props.getInput(e.target.textContent);
   };
 
   useEffect(() => {

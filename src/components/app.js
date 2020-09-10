@@ -7,6 +7,7 @@ const App = () => {
   let [weather, setWeather] = useState("");
   let [data, setData] = useState({});
   let [isLoading, setIsLoading] = useState(false);
+  let [location, setLocation] = useState("");
 
   const getWeather = async (city) => {
     setIsLoading(true);
@@ -15,11 +16,13 @@ const App = () => {
       { mode: "cors" }
     );
     const data = await response.json();
+    console.log(data);
     setIsLoading(false);
     setWeather(data);
   };
 
   const handleInput = (input) => {
+    setLocation(input);
     getWeather(data);
   };
 
@@ -31,7 +34,9 @@ const App = () => {
     <div id="main">
       <SearchBar sendInput={handleInput} getData={handleData} />
       {isLoading ? <h1>Loading...</h1> : null}
-      {weather !== "" ? <Weather weather={weather} /> : null}
+      {weather !== "" ? (
+        <Weather weather={weather} location={location} />
+      ) : null}
     </div>
   );
 };

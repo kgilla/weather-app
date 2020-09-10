@@ -17,6 +17,7 @@ const SearchBar = (props) => {
     e.preventDefault();
     if (input !== "") {
       props.sendInput(input);
+      setInput("");
       setShowResults(false);
     }
   };
@@ -75,7 +76,7 @@ const SearchBar = (props) => {
             <Results
               input={input}
               getData={handleData}
-              func={handleInputChange}
+              getInput={handleInputChange}
             />
           ) : null}
         </div>
