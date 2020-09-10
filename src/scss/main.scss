@@ -1,5 +1,4 @@
 @import "./reset";
-@import "./navbar";
 @import "./results";
 @import "./searchbar";
 @import "./weather";
@@ -15,15 +14,43 @@ html {
 }
 
 body {
-  background: url("../images/backgrounds/weather.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/backgrounds/hanny-naibaho-_OIusiNWH4g-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
   font-family: "Open Sans", sans-serif;
   height: 100%;
 }
 
 #main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  min-width: 100vw;
+  margin: 0 1rem;
+}
+
+@media (min-width: 576px) {
+  #weather-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  #weather-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 992px) {
+  #weather-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1200px) {
+  #weather-details {
+    flex-direction: column;
+  }
 }

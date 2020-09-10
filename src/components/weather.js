@@ -1,24 +1,12 @@
 import React from "react";
-import TempChunk from "./tempchunk";
-import DetailsChunk from "./detailschunk";
+import CurrentWeather from "./currentWeather";
 
 const Weather = (props) => {
   return (
-    <div id="weather-card">
-      <header id="weather-header">
-        <h2>
-          {props.weather.city_name}, {props.country}
-        </h2>
-        <h2>{props.weather.datetime.slice(0, -3)}</h2>
-      </header>
-      <div id="weather-details">
-        <TempChunk
-          weather={props.weather}
-          innerWeather={props.innerWeather}
-          country={props.country}
-        />
-        <DetailsChunk weather={props.weather} />
-      </div>
+    <div id="weather">
+      <CurrentWeather weather={props.weather.current} />
+      {/* <HourlyWeather weather={props.weather.hourly}/>
+      <DailyWeather weather={props.weather.current}/> */}
     </div>
   );
 };

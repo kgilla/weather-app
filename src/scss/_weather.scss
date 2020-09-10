@@ -2,11 +2,13 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  width: 50%;
-  height: 50%;
-  border: 0.1rem solid #aaa;
+  max-width: 40rem;
+  width: 100%;
+  margin: 1rem;
+  border: 0.1rem solid #eee;
   border-radius: 0.5rem;
-  background: #fff;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    transparent;
   overflow: hidden;
 }
 
@@ -16,8 +18,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 1rem;
-  border-bottom: 0.1rem solid #aaa;
-  background: #0277bd;
+  border-bottom: 0.1rem solid #eee;
   color: #fff;
   font-size: 1.2rem;
 }
@@ -25,8 +26,10 @@
 #weather-details {
   grid-area: 2/1/6/7;
   width: 100%;
+  padding: 1rem;
   display: flex;
   justify-content: space-around;
+  color: #fff;
 }
 
 #temp-chunk {
@@ -51,4 +54,28 @@
   justify-content: space-around;
   align-items: center;
   font-size: 1rem;
+}
+
+@media (min-width: 576px) {
+  #weather-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  #weather-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 992px) {
+  #weather-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1200px) {
+  #weather-details {
+    flex-direction: column;
+  }
 }

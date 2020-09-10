@@ -1,51 +1,37 @@
 import React, { useState } from "react";
-import Navbar from "./navbar";
 import Weather from "./weather";
 import SearchBar from "./searchbar";
-import { countries } from "../data/countries.js";
+require("dotenv").config();
 
 const App = () => {
   let [weather, setWeather] = useState("");
-  let [innerWeather, setInnerWeather] = useState("");
-  let [country, setCountry] = useState("");
-
-  const findCountry = (weather) => {
-    const c = countries.find(
-      (c) => c.country_code === weather.data[0].country_code
-    );
-    return c.country_name;
-  };
-
-  const setState = (weather) => {
-    setWeather(weather.data[0]);
-    setInnerWeather(weather.data[0].weather);
-    setCountry(findCountry(weather));
-  };
+  let [data, setData] = useState({});
+  let [isLoading, setIsLoading] = useState(false);
 
   const getWeather = async (city) => {
+    setIsLoading(true);
     const response = await fetch(
-      `https://api.weatherbit.io/v2.0/current?city=${city}&key=c7cefb476e8e46a5a25347062fe6cdde`,
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lng}&units=metric&appid=${process.env.REACT_APP_API_KEY}`,
       { mode: "cors" }
     );
-    const weather = await response.json();
-    setState(weather);
+    const data = await response.json();
+    setIsLoading(false);
+    setWeather(data);
   };
 
   const handleInput = (input) => {
-    getWeather(input);
+    getWeather(data);
+  };
+
+  const handleData = (data) => {
+    setData(data);
   };
 
   return (
     <div id="main">
-      <Navbar />
-      <SearchBar sendInput={handleInput} />
-      {weather !== "" ? (
-        <Weather
-          weather={weather}
-          innerWeather={innerWeather}
-          country={country}
-        />
-      ) : null}
+      <SearchBar sendInput={handleInput} getData={handleData} />
+      {isLoading ? <h1>Loading...</h1> : null}
+      {weather !== "" ? <Weather weather={weather} /> : null}
     </div>
   );
 };

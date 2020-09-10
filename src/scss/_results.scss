@@ -1,15 +1,15 @@
 #results {
+  width: 100%;
   position: absolute;
-  width: 73.5%;
-  border: 0.1rem solid #aaa;
-  border-top: none;
-  border-radius: 0 0 0.25rem 0.25rem;
   overflow: hidden;
+  background-color: #fff;
+  border: 0.1rem solid #eee;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .result {
   background: #fff;
-  padding: 0.75rem;
+  padding: 1rem;
 }
 
 .result:hover {
