@@ -6,6 +6,7 @@ import { countries } from "../data/countries.js";
 require("dotenv").config();
 
 const App = () => {
+  let [isError, setIsError] = useState(false);
   let [weather, setWeather] = useState("");
   let [data, setData] = useState("");
   let [isLoading, setIsLoading] = useState(false);
@@ -21,26 +22,64 @@ const App = () => {
       const data = await response.json();
       console.log(data);
       setIsLoading(false);
+      setIsError(false);
       setWeather(data);
     } catch (err) {
-      console.log(err);
+      setIsError(true);
       setIsLoading(false);
     }
   };
 
+  const findCountry = (inputs) => {
+    let country = "";
+    inputs.forEach((input) => {
+      let result = countries.find((country) => country.country_name === input);
+      if (result !== undefined) {
+        country = result;
+      }
+    });
+    setLocation(country.country_name);
+    console.log(location);
+    return country;
+  };
+
+  const findCity = (inputs, country) => {
+    let city = "";
+    inputs.forEach((input) => {
+      let result = cities.find(
+        (city) => city.name === input && city.country === country.country_code
+      );
+      if (result !== undefined) {
+        city = result;
+      }
+    });
+    setLocation((location) => city.name + ", " + location);
+    return city;
+  };
+
+  const databaseSearch = (inputs) => {
+    const country = findCountry(inputs);
+    const city = findCity(inputs, country);
+    if (city) {
+      return city;
+    } else {
+      setIsError(true);
+    }
+  };
+
   const findData = (input) => {
-    let inputs = input.split(" ");
-    let country = countries.find(
-      (country) => country.country_name === inputs[1]
-    );
-    let data = cities.find(
-      (city) => city.name === inputs[0] && city.country === country.country_code
-    );
-    getWeather(data);
+    try {
+      const inputs = input.split(/,\s|\s/);
+      const firstInput = inputs[0][0].toUpperCase() + inputs[0].slice(1);
+      const secondInput = inputs[1][0].toUpperCase() + inputs[1].slice(1);
+      const data = databaseSearch([firstInput, secondInput]);
+      getWeather(data);
+    } catch (err) {
+      setIsError(true);
+    }
   };
 
   const handleInput = (input) => {
-    setLocation(input);
     data === "" ? findData(input) : getWeather(data);
   };
 
@@ -52,6 +91,11 @@ const App = () => {
     <div id="main">
       <SearchBar sendInput={handleInput} getData={handleData} />
       {isLoading ? <h1>Loading...</h1> : null}
+      {isError ? (
+        <div className="error">
+          Sorry we could'nt find any results for that.
+        </div>
+      ) : null}
       {weather !== "" ? (
         <Weather weather={weather} location={location} />
       ) : null}

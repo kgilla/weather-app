@@ -29,7 +29,7 @@ const Results = (props) => {
       <ol>
         {results.map((result, i) => (
           <li key={i} data={i} className="result" onMouseDown={handleMouseDown}>
-            {result.name + " " + findCountry(result.country)}
+            {result.name + ", " + findCountry(result.country)}
           </li>
         ))}
       </ol>
