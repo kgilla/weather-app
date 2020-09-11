@@ -1,0 +1,62 @@
+//current weather
+#current-weather {
+  display: grid;
+}
+
+#current-weather-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  color: #fff;
+}
+
+#current-weather-main-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#current-weather-main img {
+  width: 10rem;
+  height: auto;
+}
+
+#current-weather-main-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#current-weather-temp {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#current-weather-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-content: center;
+  justify-items: center;
+  color: #fff;
+  border-left: 0.1rem solid #aaa;
+}
+
+.detail-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.detail-label {
+  color: #ddd;
+  font-size: 1.2rem;
+}

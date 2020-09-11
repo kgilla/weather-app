@@ -5,18 +5,38 @@ const HourlyWeather = (props) => {
   weather = weather.slice(0, 7);
 
   return (
-    <div id="hourly-weather-grid">
+    <div className="forecast-grid">
       {weather.map((hour, i) => (
-        <div className="hour-box" key={i}>
+        <div className="forecast-grid-item" key={i}>
+          <div className="forecast-detail-box">
+            <h5 className="forecast-detail">
+              {props.moment.unix(hour.dt).format("h a")}
+            </h5>
+            <h6 className="forecast-detail-label">
+              {props.moment.unix(hour.dt).format("D [/] M")}
+            </h6>
+          </div>
+
           <img
             src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
             alt={hour.weather[0].description}
           />
-          <h1> {props.moment.unix(hour.dt).format("h a")}</h1>
-          <h1>{hour.temp} °C</h1>
-          <h1>{hour.feels_like} °C</h1>
-          <h1>Wind: {hour.wind_speed} mps</h1>
-          <h1>POP: {hour.pop}</h1>
+          <div className="forecast-detail-box">
+            <h5 className="forecast-detail">
+              {Math.round(hour.temp)} | {Math.round(hour.feels_like)}°C
+            </h5>
+            <h6 className="forecast-detail-label">Temp</h6>
+          </div>
+          <div className="forecast-detail-box">
+            <h5 className="forecast-detail">
+              {Math.round(hour.wind_speed * 3.6)} km/h
+            </h5>
+            <h6 className="forecast-detail-label">Wind</h6>
+          </div>
+          <div className="forecast-detail-box">
+            <h5 className="forecast-detail">{Math.round(hour.pop * 100)}%</h5>
+            <h6 className="forecast-detail-label">P.O.P.</h6>
+          </div>
         </div>
       ))}
     </div>

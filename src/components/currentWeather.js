@@ -2,6 +2,13 @@ import React from "react";
 
 const CurrentWeather = (props) => {
   const image = props.weather.weather[0].icon;
+  // const degrees = props.weather.wind_deg;
+
+  // const getDirection = (degrees) => {
+  //   if (degrees > 0 && < 46) {
+  //     return ""
+  //   }
+  // }
 
   return (
     <div id="current-weather">
@@ -13,8 +20,8 @@ const CurrentWeather = (props) => {
           />
         </div>
         <div id="current-weather-main-right">
-          <h1 id="current-weather-temp">{props.weather.temp}°C</h1>
-          <h1>Feels Like: {props.weather.feels_like}°C</h1>
+          <h1 id="current-weather-temp">{Math.round(props.weather.temp)}°C</h1>
+          <h1>Feels Like: {Math.round(props.weather.feels_like)}°C</h1>
         </div>
       </div>
       <div id="current-weather-details">
@@ -43,7 +50,9 @@ const CurrentWeather = (props) => {
           <h6 className="detail-label">Wind Direction</h6>
         </div>
         <div className="detail-box">
-          <h5 className="detail">{props.weather.wind_speed}</h5>
+          <h5 className="detail">
+            {Math.round(props.weather.wind_speed * 3.6)} km/h
+          </h5>
           <h6 className="detail-label">Wind Speed</h6>
         </div>
       </div>

@@ -6,15 +6,12 @@ const SearchBar = (props) => {
   let [input, setInput] = useState("");
   let [showResults, setShowResults] = useState(false);
 
-  const inputField = document.querySelector("input");
-
   const handleInput = (e) => {
     setInput(e.target.value);
     input.length > 0 ? setShowResults(true) : setShowResults(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (input !== "") {
       props.sendInput(input);
       setInput("");
@@ -28,9 +25,9 @@ const SearchBar = (props) => {
   };
 
   const handleInputChange = (input) => {
-    setInput(input);
     setShowResults(false);
-    inputField.focus();
+    setInput("");
+    props.sendInput(input);
   };
 
   const handleFocus = () => {
@@ -49,6 +46,13 @@ const SearchBar = (props) => {
     props.getData(data);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   return (
     <form id="search-form" autoComplete="off">
       <h2 id="search-heading">4-Cast</h2>
@@ -63,6 +67,7 @@ const SearchBar = (props) => {
               onFocus={handleFocus}
               onBlur={handleBlur}
               value={input}
+              onKeyDown={handleKeyDown}
               className={showResults === true ? "open" : "closed"}
             ></input>
             {input.length > 0 ? (
@@ -80,7 +85,7 @@ const SearchBar = (props) => {
             />
           ) : null}
         </div>
-        <button onClick={handleSubmit} id="search-button">
+        <button type="button" onClick={handleSubmit} id="search-button">
           Search{" "}
         </button>
       </div>
