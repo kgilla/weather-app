@@ -8,11 +8,11 @@ const DailyWeather = (props) => {
         <div className="forecast-grid-item" key={i}>
           <div className="forecast-detail-box">
             <h5 className="forecast-detail">
-              {props.moment.unix(day.dt).format("dddd")}
+              {props.moment.unix(day.dt).tz(props.timezone).format("dddd")}
             </h5>
             <h6 className="forecast-detail-label">
               {" "}
-              {props.moment.unix(day.dt).format("D[/]M")}
+              {props.moment.unix(day.dt).tz(props.timezone).format("D[/]M")}
             </h6>
           </div>
           <img
@@ -21,7 +21,7 @@ const DailyWeather = (props) => {
           />
           <div className="forecast-detail-box">
             <h5 className="forecast-detail">
-              {Math.round(day.temp.min)} | {Math.round(day.temp.max)} °C
+              {Math.round(day.temp.min)}° | {Math.round(day.temp.max)}°
             </h5>
             <h6 className="forecast-detail-label">Temp</h6>
           </div>

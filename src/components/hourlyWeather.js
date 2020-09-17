@@ -10,10 +10,16 @@ const HourlyWeather = (props) => {
         <div className="forecast-grid-item" key={i}>
           <div className="forecast-detail-box">
             <h5 className="forecast-detail">
-              {props.moment.unix(hour.dt).format("h a")}
+              {props.moment
+              .unix(hour.dt)
+              .tz(props.timezone)
+              .format("h a")}
             </h5>
             <h6 className="forecast-detail-label">
-              {props.moment.unix(hour.dt).format("D [/] M")}
+              {props.moment
+              .unix(hour.dt)
+              .tz(props.timezone)
+              .format("D [/] M")}
             </h6>
           </div>
 
@@ -23,7 +29,7 @@ const HourlyWeather = (props) => {
           />
           <div className="forecast-detail-box">
             <h5 className="forecast-detail">
-              {Math.round(hour.temp)} | {Math.round(hour.feels_like)}°C
+              {Math.round(hour.temp)}° | {Math.round(hour.feels_like)}°
             </h5>
             <h6 className="forecast-detail-label">Temp</h6>
           </div>

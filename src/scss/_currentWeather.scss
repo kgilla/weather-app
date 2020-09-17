@@ -4,10 +4,8 @@
 }
 
 #current-weather-main {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: 0.75fr 1fr;
   color: #fff;
 }
 
@@ -19,7 +17,7 @@
 }
 
 #current-weather-main img {
-  width: 10rem;
+  width: 12rem;
   height: auto;
 }
 
@@ -31,18 +29,17 @@
 }
 
 #current-weather-temp {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
 }
 
 #current-weather-details {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
   gap: 2rem;
   align-content: center;
   justify-items: center;
   color: #fff;
-  border-left: 0.1rem solid #aaa;
 }
 
 .detail-box {
@@ -58,5 +55,5 @@
 
 .detail-label {
   color: #ddd;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }

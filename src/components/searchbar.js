@@ -8,6 +8,7 @@ const SearchBar = (props) => {
 
   const handleInput = (e) => {
     setInput(e.target.value);
+    props.sendInput(e.target.value)
     input.length > 0 ? setShowResults(true) : setShowResults(false);
   };
 
@@ -25,9 +26,8 @@ const SearchBar = (props) => {
   };
 
   const handleInputChange = (input) => {
-    setShowResults(false);
-    setInput("");
-    props.sendInput(input);
+    props.sendInput(input)
+    setInput(input)
   };
 
   const handleFocus = () => {
@@ -42,14 +42,14 @@ const SearchBar = (props) => {
     }
   };
 
-  const handleData = (data) => {
-    props.getData(data);
-  };
-
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
       handleSubmit();
+    } else if (e.keyCode === 38) {
+
+    } else if (e.keyCode === 40) {
+
     }
   };
 
@@ -78,11 +78,7 @@ const SearchBar = (props) => {
           </div>
 
           {showResults ? (
-            <Results
-              input={input}
-              getData={handleData}
-              getInput={handleInputChange}
-            />
+            <Results results={props.results} getInput={handleInputChange} sendIndex={props.sendIndex}/>
           ) : null}
         </div>
         <button type="button" onClick={handleSubmit} id="search-button">

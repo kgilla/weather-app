@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Weather from "./weather";
 import SearchBar from "./searchbar";
 import cities from "cities.json";
@@ -6,11 +6,30 @@ import { countries } from "../data/countries.js";
 require("dotenv").config();
 
 const App = () => {
-  let [isError, setIsError] = useState(false);
-  let [weather, setWeather] = useState("");
-  let [data, setData] = useState("");
   let [isLoading, setIsLoading] = useState(false);
+  let [isError, setIsError] = useState(false);
+
+  let [weather, setWeather] = useState("");
   let [location, setLocation] = useState("");
+  let [input, setInput] = useState("");
+  let [results, setResults] = useState([]);
+
+  useEffect(() => {
+
+  const findCountry = (code) => {
+    const c = countries.find((c) => c.country_code === code);
+    return c.country_name;
+  };
+    const getResultsList = () => {
+      const reg = new RegExp("^" + input, "gi");
+      let list = cities.filter((city) => city.name.match(reg));
+      list = list.slice(0,5)
+      list.forEach(city => city.countryName = findCountry(city.country))
+      console.log(list)
+      setResults(list);
+    };
+    getResultsList();
+  }, [input]);
 
   const getWeather = async (city) => {
     try {
@@ -30,66 +49,55 @@ const App = () => {
     }
   };
 
-  const findCountry = (inputs) => {
-    let country = "";
-    inputs.forEach((input) => {
-      let result = countries.find((country) => country.country_name === input);
-      if (result !== undefined) {
-        country = result;
-      }
-    });
-    setLocation(country.country_name);
-    console.log(location);
-    return country;
-  };
-
-  const findCity = (inputs, country) => {
-    let city = "";
-    inputs.forEach((input) => {
-      let result = cities.find(
-        (city) => city.name === input && city.country === country.country_code
-      );
-      if (result !== undefined) {
-        city = result;
-      }
-    });
-    setLocation((location) => city.name + ", " + location);
-    return city;
-  };
-
-  const databaseSearch = (inputs) => {
-    const country = findCountry(inputs);
-    const city = findCity(inputs, country);
-    if (city) {
-      return city;
-    } else {
-      setIsError(true);
-    }
-  };
-
-  const findData = (input) => {
-    try {
-      const inputs = input.split(/,\s|\s/);
-      const firstInput = inputs[0][0].toUpperCase() + inputs[0].slice(1);
-      const secondInput = inputs[1][0].toUpperCase() + inputs[1].slice(1);
-      const data = databaseSearch([firstInput, secondInput]);
-      getWeather(data);
-    } catch (err) {
-      setIsError(true);
-    }
-  };
-
   const handleInput = (input) => {
-    data === "" ? findData(input) : getWeather(data);
-  };
+    setInput(input)
+  }
 
-  const handleData = (data) => {
-    setData(data);
-  };
+  const handleIndex = (index) => {
+    setLocation(results[index])
+    getWeather(results[index])
+  }
+
+  // const findCountry = (input) => {
+  //   let country = "";
+  //   let result = countries.find((country) => country.country_name === input);
+  //   if (result !== undefined) {
+  //     country = result;
+      
+  //   }
+  //   return country;
+  // };
+
+  // const findCity = (input, country) => {
+  //   let city = "";
+  //     let result = cities.find(
+  //       (city) => city.name === input
+  //     );
+  //     if (result !== undefined) {
+  //       city = result;
+  //     }
+    
+  //   const location = city.name + ", " + country.country_name;
+  //   setLocation(location)
+  //   return city;
+  // };
+
+  // const findData = (input) => {
+  //   try {
+  //     const inputs = input.split(/,\s/);
+  //     const firstInput = inputs[0][0].toUpperCase() + inputs[0].slice(1);
+  //     const secondInput = inputs[1][0].toUpperCase() + inputs[1].slice(1);
+  //     const country = findCountry(secondInput);
+  //     const city = findCity(firstInput, country);  
+  //     getWeather(city);
+  //   } catch (err) {
+  //     setIsError(true);
+  //   }
+  // };
 
   return (
     <div id="main">
-      <SearchBar sendInput={handleInput} getData={handleData} />
+      <SearchBar sendInput={handleInput} results={results} sendIndex={handleIndex} />
       {isLoading ? <h1>Loading...</h1> : null}
       {isError ? (
         <div className="error">
