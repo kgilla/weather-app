@@ -8,26 +8,23 @@ const SearchBar = (props) => {
 
   const handleInput = (e) => {
     setInput(e.target.value);
-    props.sendInput(e.target.value)
+    props.sendInput(e.target.value);
     input.length > 0 ? setShowResults(true) : setShowResults(false);
   };
 
   const handleSubmit = () => {
-    if (input !== "") {
-      props.sendInput(input);
-      setInput("");
-      setShowResults(false);
-    }
+    props.submit();
   };
 
   const handleClick = () => {
     setInput("");
+    props.setSelected("");
     setShowResults(false);
   };
 
   const handleInputChange = (input) => {
-    props.sendInput(input)
-    setInput(input)
+    props.sendInput(input);
+    setInput(input);
   };
 
   const handleFocus = () => {
@@ -45,11 +42,14 @@ const SearchBar = (props) => {
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      handleSubmit();
+      setShowResults(false);
+      props.submit();
     } else if (e.keyCode === 38) {
-
+      e.preventDefault();
+      props.getSelection("down");
     } else if (e.keyCode === 40) {
-
+      e.preventDefault();
+      props.getSelection("up");
     }
   };
 
@@ -66,7 +66,7 @@ const SearchBar = (props) => {
               onChange={handleInput}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              value={input}
+              value={props.inputValue ? props.inputValue : input}
               onKeyDown={handleKeyDown}
               className={showResults === true ? "open" : "closed"}
             ></input>
@@ -78,7 +78,12 @@ const SearchBar = (props) => {
           </div>
 
           {showResults ? (
-            <Results results={props.results} getInput={handleInputChange} sendIndex={props.sendIndex}/>
+            <Results
+              results={props.results}
+              getInput={handleInputChange}
+              sendIndex={props.sendIndex}
+              selected={props.selected}
+            />
           ) : null}
         </div>
         <button type="button" onClick={handleSubmit} id="search-button">

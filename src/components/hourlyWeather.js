@@ -29,7 +29,7 @@ const HourlyWeather = (props) => {
           />
           <div className="forecast-detail-box">
             <h5 className="forecast-detail">
-              {Math.round(hour.temp)}° | {Math.round(hour.feels_like)}°
+              {Math.round(hour.temp)}°
             </h5>
             <h6 className="forecast-detail-label">Temp</h6>
           </div>

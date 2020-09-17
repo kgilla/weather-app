@@ -18,7 +18,7 @@ html {
 
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/backgrounds/hanny-naibaho-_OIusiNWH4g-unsplash.jpg");
+    url("../images/backgrounds/quino-al-JFeOy62yjXk-unsplash.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,15 +27,14 @@ body {
 }
 
 #main {
-  position:relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  align-content: center;
-  gap: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
   max-width: 1400px;
-  margin: 0 1rem;
+  margin: 0 auto;
 }
 
 .error {
@@ -43,7 +42,6 @@ body {
 }
 
 footer {
- 
   position: relative;
   bottom: 0;
   margin: 2rem auto;

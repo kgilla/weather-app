@@ -8,26 +8,25 @@ require("dotenv").config();
 const App = () => {
   let [isLoading, setIsLoading] = useState(false);
   let [isError, setIsError] = useState(false);
-
   let [weather, setWeather] = useState("");
   let [location, setLocation] = useState("");
   let [input, setInput] = useState("");
   let [results, setResults] = useState([]);
+  let [selected, setSelected] = useState("");
 
   useEffect(() => {
+    const findCountry = (code) => {
+      const c = countries.find((c) => c.country_code === code);
+      return c.country_name;
+    };
 
-  const findCountry = (code) => {
-    const c = countries.find((c) => c.country_code === code);
-    return c.country_name;
-  };
     const getResultsList = () => {
       const reg = new RegExp("^" + input, "gi");
-      let list = cities.filter((city) => city.name.match(reg));
-      list = list.slice(0,5)
-      list.forEach(city => city.countryName = findCountry(city.country))
-      console.log(list)
+      let list = cities.filter((city) => city.name.match(reg)).slice(0, 5);
+      list.forEach((city) => (city.countryName = findCountry(city.country)));
       setResults(list);
     };
+
     getResultsList();
   }, [input]);
 
@@ -39,7 +38,6 @@ const App = () => {
         { mode: "cors" }
       );
       const data = await response.json();
-      console.log(data);
       setIsLoading(false);
       setIsError(false);
       setWeather(data);
@@ -50,54 +48,50 @@ const App = () => {
   };
 
   const handleInput = (input) => {
-    setInput(input)
-  }
+    setInput(input);
+    setSelected("");
+  };
 
   const handleIndex = (index) => {
-    setLocation(results[index])
-    getWeather(results[index])
-  }
+    setLocation(results[index]);
+    getWeather(results[index]);
+  };
 
-  // const findCountry = (input) => {
-  //   let country = "";
-  //   let result = countries.find((country) => country.country_name === input);
-  //   if (result !== undefined) {
-  //     country = result;
-      
-  //   }
-  //   return country;
-  // };
+  const handleSubmit = () => {
+    if (selected) {
+      setLocation(results[selected]);
+      getWeather(results[selected]);
+    }
+  };
 
-  // const findCity = (input, country) => {
-  //   let city = "";
-  //     let result = cities.find(
-  //       (city) => city.name === input
-  //     );
-  //     if (result !== undefined) {
-  //       city = result;
-  //     }
-    
-  //   const location = city.name + ", " + country.country_name;
-  //   setLocation(location)
-  //   return city;
-  // };
-
-  // const findData = (input) => {
-  //   try {
-  //     const inputs = input.split(/,\s/);
-  //     const firstInput = inputs[0][0].toUpperCase() + inputs[0].slice(1);
-  //     const secondInput = inputs[1][0].toUpperCase() + inputs[1].slice(1);
-  //     const country = findCountry(secondInput);
-  //     const city = findCity(firstInput, country);  
-  //     getWeather(city);
-  //   } catch (err) {
-  //     setIsError(true);
-  //   }
-  // };
+  const handleSelection = (direction) => {
+    if (selected === "") {
+      setSelected(0);
+    } else if (direction === "down") {
+      selected <= 0 ? setSelected(0) : setSelected((selected) => selected - 1);
+    } else if (direction === "up") {
+      selected >= results.length - 1
+        ? setSelected(results.length - 1)
+        : setSelected((selected) => selected + 1);
+    }
+  };
 
   return (
     <div id="main">
-      <SearchBar sendInput={handleInput} results={results} sendIndex={handleIndex} />
+      <SearchBar
+        sendInput={handleInput}
+        results={results}
+        sendIndex={handleIndex}
+        getSelection={handleSelection}
+        selected={selected}
+        setSelected={setSelected}
+        submit={handleSubmit}
+        inputValue={
+          selected !== ""
+            ? results[selected].name + ", " + results[selected].countryName
+            : ""
+        }
+      />
       {isLoading ? <h1>Loading...</h1> : null}
       {isError ? (
         <div className="error">
