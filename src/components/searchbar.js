@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Results from "./results";
+import PartialResults from "./partialResults";
 import { Cross } from "@styled-icons/entypo";
 
 const SearchBar = (props) => {
@@ -20,6 +21,7 @@ const SearchBar = (props) => {
     setInput("");
     props.setSelected("");
     setShowResults(false);
+    props.setShowPartial(false);
   };
 
   const handleInputChange = (input) => {
@@ -68,7 +70,7 @@ const SearchBar = (props) => {
               onBlur={handleBlur}
               value={props.inputValue ? props.inputValue : input}
               onKeyDown={handleKeyDown}
-              className={showResults === true ? "open" : "closed"}
+              className={showResults || props.showPartial ? "open" : "closed"}
             ></input>
             {input.length > 0 ? (
               <button id="cancel-button" onClick={handleClick}>
@@ -83,6 +85,13 @@ const SearchBar = (props) => {
               getInput={handleInputChange}
               sendIndex={props.sendIndex}
               selected={props.selected}
+            />
+          ) : null}
+          {props.showPartial ? (
+            <PartialResults
+              results={props.results}
+              input={input}
+              sendIndex={props.handleIndex}
             />
           ) : null}
         </div>

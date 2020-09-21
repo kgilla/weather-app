@@ -20,3 +20,29 @@
 .selected {
   filter: brightness(90%);
 }
+
+#partial-list {
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 3;
+}
+
+#partial-heading {
+  padding: 1rem;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.partial-result {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.partial-result:hover {
+  cursor: pointer;
+  background-color: #eee;
+}

@@ -8,6 +8,7 @@ require("dotenv").config();
 const App = () => {
   let [isLoading, setIsLoading] = useState(false);
   let [isError, setIsError] = useState(false);
+  let [showPartial, setShowPartial] = useState(false);
   let [weather, setWeather] = useState("");
   let [location, setLocation] = useState("");
   let [input, setInput] = useState("");
@@ -50,9 +51,13 @@ const App = () => {
   const handleInput = (input) => {
     setInput(input);
     setSelected("");
+    setShowPartial(false);
   };
 
   const handleIndex = (index) => {
+    if (showPartial === true) {
+      setShowPartial(false);
+    }
     setLocation(results[index]);
     getWeather(results[index]);
   };
@@ -61,6 +66,12 @@ const App = () => {
     if (selected) {
       setLocation(results[selected]);
       getWeather(results[selected]);
+    } else if (results.length === 1) {
+      setLocation(results[0]);
+      getWeather(results[0]);
+    } else {
+      setWeather("");
+      setShowPartial(true);
     }
   };
 
@@ -86,11 +97,13 @@ const App = () => {
         selected={selected}
         setSelected={setSelected}
         submit={handleSubmit}
+        showPartial={showPartial}
         inputValue={
           selected !== ""
             ? results[selected].name + ", " + results[selected].countryName
             : ""
         }
+        setShowPartial={setShowPartial}
       />
       {isLoading ? <h1>Loading...</h1> : null}
       {isError ? (
