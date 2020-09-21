@@ -24,6 +24,9 @@ const Results = (props) => {
           </li>
         )
       )}
+      <button type="button" id="inner-button" className="search-button">
+        Search{" "}
+      </button>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Weather from "./weather";
 import SearchBar from "./searchbar";
+import Spinner from "./spinner";
 import cities from "cities.json";
 import { countries } from "../data/countries.js";
 require("dotenv").config();
@@ -105,7 +106,7 @@ const App = () => {
         }
         setShowPartial={setShowPartial}
       />
-      {isLoading ? <h1>Loading...</h1> : null}
+      {isLoading ? <Spinner /> : null}
       {isError ? (
         <div className="error">
           Sorry we could'nt find any results for that.

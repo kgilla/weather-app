@@ -2,6 +2,7 @@
   width: 100%;
   position: absolute;
   overflow: hidden;
+  border-top: 0.1rem solid #eee;
   background-color: #fff;
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 3;
@@ -10,6 +11,7 @@
 .result {
   background: #fff;
   padding: 1rem;
+  list-style: none;
 }
 
 .result:hover {
@@ -26,13 +28,15 @@
   position: absolute;
   overflow: hidden;
   background-color: #fff;
+  border-top: 0.1rem solid #eee;
+
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 3;
 }
 
 #partial-heading {
   padding: 1rem;
-  background: #fff;
+  background: #eee;
   font-size: 1rem;
   font-weight: 700;
 }
@@ -40,9 +44,15 @@
 .partial-result {
   padding: 1rem;
   font-size: 1rem;
+  list-style: none;
 }
 
 .partial-result:hover {
   cursor: pointer;
   background-color: #eee;
+}
+
+#inner-button {
+  margin-top: 0;
+  border-radius: 0;
 }

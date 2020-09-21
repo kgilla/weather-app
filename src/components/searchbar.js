@@ -60,7 +60,10 @@ const SearchBar = (props) => {
       <h2 id="search-heading">4-Cast</h2>
       <div id="search-bar">
         <div id="search-results">
-          <div id="input-container">
+          <div
+            id="input-container"
+            className={showResults || props.showPartial ? "open" : "closed"}
+          >
             <input
               type="text"
               id="search-input"
@@ -70,7 +73,6 @@ const SearchBar = (props) => {
               onBlur={handleBlur}
               value={props.inputValue ? props.inputValue : input}
               onKeyDown={handleKeyDown}
-              className={showResults || props.showPartial ? "open" : "closed"}
             ></input>
             {input.length > 0 ? (
               <button id="cancel-button" onClick={handleClick}>
@@ -79,7 +81,7 @@ const SearchBar = (props) => {
             ) : null}
           </div>
 
-          {showResults ? (
+          {showResults && props.results.length > 0 ? (
             <Results
               results={props.results}
               getInput={handleInputChange}
@@ -91,11 +93,11 @@ const SearchBar = (props) => {
             <PartialResults
               results={props.results}
               input={input}
-              sendIndex={props.handleIndex}
+              sendIndex={props.sendIndex}
             />
           ) : null}
         </div>
-        <button type="button" onClick={handleSubmit} id="search-button">
+        <button type="button" onClick={handleSubmit} className="search-button">
           Search{" "}
         </button>
       </div>

@@ -2,13 +2,30 @@ import React from "react";
 
 const CurrentWeather = (props) => {
   const image = props.weather.weather[0].icon;
-  // const degrees = props.weather.wind_deg;
 
-  // const getDirection = (degrees) => {
-  //   if (degrees > 0 && < 46) {
-  //     return ""
-  //   }
-  // }
+  const degToCompass = (degrees) => {
+    const arr = [
+      "N",
+      "NNE",
+      "NE",
+      "ENE",
+      "E",
+      "ESE",
+      "SE",
+      "SSE",
+      "S",
+      "SSW",
+      "SW",
+      "WSW",
+      "W",
+      "WNW",
+      "NW",
+      "NNW",
+    ];
+    const val = degrees / 22.5;
+    console.log(degrees);
+    return arr[Math.round(val)];
+  };
 
   return (
     <div id="current-weather">
@@ -46,7 +63,7 @@ const CurrentWeather = (props) => {
           <h6 className="detail-label">Humidity</h6>
         </div>
         <div className="detail-box">
-          <h5 className="detail">{props.weather.wind_deg} degrees</h5>
+          <h5 className="detail">{degToCompass(props.weather.wind_deg)}</h5>
           <h6 className="detail-label">Wind Direction</h6>
         </div>
         <div className="detail-box">
