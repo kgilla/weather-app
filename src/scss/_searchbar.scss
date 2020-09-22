@@ -108,12 +108,12 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: #1f618d;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
   transition: all 0.1s ease-in-out;
 }
 
 .offset {
-  top: -100px;
+  top: -80px;
 }
 
 .not-offset {
