@@ -128,7 +128,11 @@ const App = () => {
         </div>
       ) : null}
       {weather !== "" ? (
-        <Weather weather={weather} location={location} />
+        <Weather
+          weather={weather}
+          location={location}
+          showSearch={showSearch}
+        />
       ) : null}
       <footer>
         <a href="https://github.com/kgilla">Made by me, Kgilla</a>

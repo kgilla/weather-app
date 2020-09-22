@@ -103,12 +103,21 @@
 }
 
 #search-nav {
+  position: fixed;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
-  margin-bottom: 2rem;
   background: #1f618d;
+  transition: all 0.1s ease-in-out;
+}
+
+.offset {
+  top: -100px;
+}
+
+.not-offset {
+  top: 0;
 }
 
 #nav-heading {

@@ -19,7 +19,10 @@ const Weather = (props) => {
     .join(" ");
 
   return (
-    <div id="weather">
+    <div
+      id="weather"
+      className={props.showSearch === false ? "add-margin" : null}
+    >
       <header id="weather-header">
         <h1 id="weather-location">
           {props.location.name + ", " + props.location.countryName}
