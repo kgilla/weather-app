@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import moment from 'moment-timezone'
+import moment from "moment-timezone";
 import CurrentWeather from "./currentWeather";
 import DailyWeather from "./dailyWeather";
 import HourlyWeather from "./hourlyWeather";
 
 const Weather = (props) => {
-  console.log(props.weather)
   let [showDaily, setShowDaily] = useState(false);
 
   const handleClick = (e) => {
@@ -17,21 +16,21 @@ const Weather = (props) => {
   let description = props.weather.current.weather[0].description
     .split(" ")
     .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-    .join(" ")
+    .join(" ");
 
   return (
     <div id="weather">
       <header id="weather-header">
-        <h1 id="weather-location">{props.location.name + ", " + props.location.countryName}</h1>
+        <h1 id="weather-location">
+          {props.location.name + ", " + props.location.countryName}
+        </h1>
         <h2 id="weather-date">
           {moment
             .unix(props.weather.current.dt)
             .tz(props.weather.timezone)
             .format("dddd, MMMM Do YYYY, h:mm a")}
         </h2>
-        <h1 id="weather-description">
-          {description}
-        </h1>
+        <h1 id="weather-description">{description}</h1>
       </header>
       <CurrentWeather weather={props.weather.current} moment={moment} />
       <div id="forecast">
@@ -72,10 +71,17 @@ const Weather = (props) => {
         )}
 
         {showDaily === false ? (
-          <HourlyWeather weather={props.weather.hourly} moment={moment} timezone={props.weather.timezone} />
+          <HourlyWeather
+            weather={props.weather.hourly}
+            moment={moment}
+            timezone={props.weather.timezone}
+          />
         ) : (
-          <DailyWeather weather={props.weather.daily} moment={moment} 
-          timezone={props.weather.timezone}/>
+          <DailyWeather
+            weather={props.weather.daily}
+            moment={moment}
+            timezone={props.weather.timezone}
+          />
         )}
       </div>
     </div>

@@ -55,8 +55,17 @@ const SearchBar = (props) => {
     }
   };
 
+  const handleHideSearch = () => {
+    props.hideSearch();
+  };
+
   return (
     <form id="search-form" autoComplete="off">
+      {props.weather !== "" ? (
+        <button id="hide-search" onClick={handleHideSearch}>
+          <Cross id="hide-search-icon" />
+        </button>
+      ) : null}
       <h2 id="search-heading">4-Cast</h2>
       <div id="search-bar">
         <div id="search-results">

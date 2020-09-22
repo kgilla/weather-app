@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Weather from "./weather";
 import SearchBar from "./searchbar";
 import Spinner from "./spinner";
+import Navbar from "./navbar";
 import cities from "cities.json";
 import { countries } from "../data/countries.js";
 require("dotenv").config();
 
 const App = () => {
+  let [showSearch, setShowSearch] = useState(true);
   let [isLoading, setIsLoading] = useState(false);
   let [isError, setIsError] = useState(false);
   let [showPartial, setShowPartial] = useState(false);
@@ -43,6 +45,7 @@ const App = () => {
       setIsLoading(false);
       setIsError(false);
       setWeather(data);
+      setShowSearch(false);
     } catch (err) {
       setIsError(true);
       setIsLoading(false);
@@ -88,24 +91,36 @@ const App = () => {
     }
   };
 
+  const handleShowSearch = () => {
+    console.log(showSearch);
+    showSearch ? setShowSearch(false) : setShowSearch(true);
+  };
+
   return (
     <div id="main">
-      <SearchBar
-        sendInput={handleInput}
-        results={results}
-        sendIndex={handleIndex}
-        getSelection={handleSelection}
-        selected={selected}
-        setSelected={setSelected}
-        submit={handleSubmit}
-        showPartial={showPartial}
-        inputValue={
-          selected !== ""
-            ? results[selected].name + ", " + results[selected].countryName
-            : ""
-        }
-        setShowPartial={setShowPartial}
-      />
+      {showSearch ? (
+        <SearchBar
+          sendInput={handleInput}
+          results={results}
+          sendIndex={handleIndex}
+          getSelection={handleSelection}
+          selected={selected}
+          setSelected={setSelected}
+          submit={handleSubmit}
+          showPartial={showPartial}
+          inputValue={
+            selected !== ""
+              ? results[selected].name + ", " + results[selected].countryName
+              : ""
+          }
+          setShowPartial={setShowPartial}
+          hideSearch={handleShowSearch}
+          weather={weather}
+        />
+      ) : (
+        <Navbar showSearch={handleShowSearch} />
+      )}
+
       {isLoading ? <Spinner /> : null}
       {isError ? (
         <div className="error">
