@@ -29,10 +29,7 @@ body {
 
 #main {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   min-height: 100vh;
   max-width: 1400px;
   margin: 0 auto;
@@ -43,20 +40,23 @@ body {
 }
 
 footer {
-  position: relative;
-  bottom: 0;
   margin: 2rem auto;
 }
 
 footer a {
   color: #fff;
   text-decoration: none;
+  :hover {
+    color: #fff;
+    text-decoration: none;
+    filter: brightness(90%);
+  }
 }
 
-footer a:hover {
+#github-icon {
   color: #fff;
-  text-decoration: none;
-  filter: brightness(90%);
+  width: 3rem;
+  height: auto;
 }
 
 @media (min-width: 576px) {
@@ -69,4 +69,7 @@ footer a:hover {
 }
 
 @media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
 }

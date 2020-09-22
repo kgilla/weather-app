@@ -3,6 +3,7 @@ import Weather from "./weather";
 import SearchBar from "./searchbar";
 import Spinner from "./spinner";
 import Navbar from "./navbar";
+import Footer from "./footer";
 import cities from "cities.json";
 import { countries } from "../data/countries.js";
 require("dotenv").config();
@@ -134,9 +135,7 @@ const App = () => {
           showSearch={showSearch}
         />
       ) : null}
-      <footer>
-        <a href="https://github.com/kgilla">Made by me, Kgilla</a>
-      </footer>
+      <Footer />
     </div>
   );
 };

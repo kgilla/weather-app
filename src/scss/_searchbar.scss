@@ -1,6 +1,8 @@
 /* Search Bar */
 
 #search-form {
+  align-self: center;
+  justify-self: center;
   width: 100%;
   max-width: 36rem;
   margin-bottom: 3rem;
@@ -105,11 +107,20 @@
 #search-nav {
   position: fixed;
   width: 100%;
+  left: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  transition: all 0.1s ease-in-out;
+}
+
+#nav-items {
+  width: 100%;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-  transition: all 0.1s ease-in-out;
 }
 
 .offset {

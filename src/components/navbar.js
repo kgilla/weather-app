@@ -23,10 +23,12 @@ const Navbar = (props) => {
   };
   return (
     <nav id="search-nav" className={isVisible ? "not-offset" : "offset"}>
-      <h1 id="nav-heading">4-Cast</h1>
-      <button id="nav-button" onClick={handleClick}>
-        <Search id="search-icon" />
-      </button>
+      <div id="nav-items">
+        <h1 id="nav-heading">4-Cast</h1>
+        <button id="nav-button" onClick={handleClick}>
+          <Search id="search-icon" />
+        </button>
+      </div>
     </nav>
   );
 };
