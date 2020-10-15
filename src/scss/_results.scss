@@ -12,11 +12,10 @@
   background: #fff;
   padding: 1rem;
   list-style: none;
-}
-
-.result:hover {
-  filter: brightness(90%);
-  cursor: pointer;
+  :hover {
+    filter: brightness(90%);
+    cursor: pointer;
+  }
 }
 
 .selected {
@@ -29,7 +28,6 @@
   overflow: hidden;
   background-color: #fff;
   border-top: 0.1rem solid #eee;
-
   border-radius: 0 0 0.5rem 0.5rem;
   z-index: 3;
 }
@@ -45,11 +43,10 @@
   padding: 1rem;
   font-size: 1rem;
   list-style: none;
-}
-
-.partial-result:hover {
-  cursor: pointer;
-  background-color: #eee;
+  :hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
 }
 
 #inner-button {

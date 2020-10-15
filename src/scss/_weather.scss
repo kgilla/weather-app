@@ -1,4 +1,3 @@
-//weather main
 #weather {
   width: 100%;
 }
@@ -44,11 +43,10 @@
   background: none;
   color: #fff;
   font-size: 1.5rem;
-}
-
-.forecast-switch:hover {
-  cursor: pointer;
-  filter: brightness(80%);
+  :hover {
+    cursor: pointer;
+    filter: brightness(80%);
+  }
 }
 
 .active {
