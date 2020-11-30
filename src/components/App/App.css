@@ -1,12 +1,3 @@
-@import "./reset";
-@import "./results";
-@import "./searchbar";
-@import "./weather";
-@import "./currentWeather";
-@import "./forecasts";
-@import "./footer";
-@import "./spinner";
-@import "./navbar";
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap");
 
 html {
@@ -19,8 +10,8 @@ html {
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/backgrounds/quino-al-JFeOy62yjXk-unsplash.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../../images/backgrounds/quino-al-JFeOy62yjXk-unsplash.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

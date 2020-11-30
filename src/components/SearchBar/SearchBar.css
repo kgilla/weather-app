@@ -55,11 +55,12 @@
   background: #27ae60;
   box-shadow: 0 8px 6px -6px #222;
   transition: all 0.2 ease-in-out;
-  :hover {
-    color: #fff;
-    background: #229954;
-    cursor: pointer;
-  }
+}
+
+.search-button:hover {
+  color: #fff;
+  background: #229954;
+  cursor: pointer;
 }
 
 #cancel-button {
@@ -67,10 +68,11 @@
   background-color: transparent;
   border: none;
   background-color: #fff;
-  :hover {
-    color: #888;
-    cursor: pointer;
-  }
+}
+
+#cancel-button:hover {
+  color: #888;
+  cursor: pointer;
 }
 
 #cancel-icon {
@@ -90,10 +92,11 @@
   color: #fff;
   width: 3rem;
   height: auto;
-  :hover {
-    cursor: pointer;
-    color: #ddd;
-  }
+}
+
+#hide-search-icon:hover {
+  cursor: pointer;
+  color: #ddd;
 }
 
 .closed {

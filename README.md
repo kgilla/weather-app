@@ -11,7 +11,6 @@ This website was made based on the curriculum of [The Odin Project's](https://ww
 - Improve my comfort with using 3rd party APIs and derive some influence towards helping my own API development in the future.
 - Further my understanding of using asynchronous code in Javascript - centered around Async/Await.
 - Write all my own CSS and don't utilize any frameworks to help with responsive layout or overall design.
-- Use [Sass](https://sass-lang.com/) to partition stylesheets based on components
 - Make a website more responsive to various viewports
 - Improve my overall design ideas and layout structuring
 - Make my code more modular and partitioned overall

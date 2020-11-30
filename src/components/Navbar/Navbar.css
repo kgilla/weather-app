@@ -26,9 +26,10 @@
 #nav-button {
   background: none;
   border: none;
-  :hover {
-    cursor: pointer;
-  }
+}
+
+#nav-button:hover {
+  cursor: pointer;
 }
 
 #search-icon {

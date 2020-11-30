@@ -12,10 +12,11 @@
   background: #fff;
   padding: 1rem;
   list-style: none;
-  :hover {
-    filter: brightness(90%);
-    cursor: pointer;
-  }
+}
+
+.result:hover {
+  filter: brightness(90%);
+  cursor: pointer;
 }
 
 .selected {
@@ -43,10 +44,11 @@
   padding: 1rem;
   font-size: 1rem;
   list-style: none;
-  :hover {
-    cursor: pointer;
-    background-color: #eee;
-  }
+}
+
+.partial-result:hover {
+  cursor: pointer;
+  background-color: #eee;
 }
 
 #inner-button {

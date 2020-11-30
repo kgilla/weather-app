@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Weather from "./weather";
-import SearchBar from "./searchbar";
-import Spinner from "./spinner";
-import Navbar from "./navbar";
-import Footer from "./footer";
+import Weather from "../Weather";
+import SearchBar from "../SearchBar";
+import Spinner from "../Spinner";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
+
+import "./Reset.css";
+import "./App.css";
+
 import cities from "cities.json";
-import { countries } from "../data/countries.js";
+import { countries } from "../../data/countries.js";
 require("dotenv").config();
 
 const App = () => {

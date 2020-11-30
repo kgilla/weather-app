@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import moment from "moment-timezone";
-import CurrentWeather from "./currentWeather";
-import DailyWeather from "./dailyWeather";
-import HourlyWeather from "./hourlyWeather";
+import CurrentWeather from "../CurrentWeather";
+import DailyWeather from "../DailyWeather";
+import HourlyWeather from "../HourlyWeather";
+
+import "./Weather.css";
 
 const Weather = (props) => {
   let [showDaily, setShowDaily] = useState(false);

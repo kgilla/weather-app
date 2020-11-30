@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import Results from "./results";
-import PartialResults from "./partialResults";
+import Results from "../Results";
+import PartialResults from "../PartialResults";
 import { Cross } from "@styled-icons/entypo";
+
+import "./SearchBar.css";
 
 const SearchBar = (props) => {
   let [input, setInput] = useState("");

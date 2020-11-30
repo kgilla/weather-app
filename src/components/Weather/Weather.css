@@ -43,10 +43,11 @@
   background: none;
   color: #fff;
   font-size: 1.5rem;
-  :hover {
-    cursor: pointer;
-    filter: brightness(80%);
-  }
+}
+
+.forecast-switch:hover {
+  cursor: pointer;
+  filter: brightness(80%);
 }
 
 .active {

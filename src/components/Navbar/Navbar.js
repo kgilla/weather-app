@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "@styled-icons/bootstrap";
+import "./Navbar.css";
 
 const Navbar = (props) => {
   let [scrollPosition, setScrollPosition] = useState(0);
